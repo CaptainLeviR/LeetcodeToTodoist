@@ -108,6 +108,29 @@
         cursor: pointer;
       }
 
+      button.secondary {
+        background: none;
+        border: 1px solid var(--input-border);
+        color: var(--text-primary);
+        padding: 10px 14px;
+        border-radius: 10px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+
+      button.secondary:hover {
+        background: rgba(0, 0, 0, 0.04);
+      }
+
+      :root[data-theme='dark'] button.secondary {
+        border-color: #4a4a4a;
+        background: #1c1c1c;
+      }
+
+      :root[data-theme='dark'] button.secondary:hover {
+        background: #262626;
+      }
+
       [data-role="status"] {
         min-height: 20px;
         font-size: 14px;
@@ -146,6 +169,9 @@
         <input type="password" id="todoist-token" name="token" required />
         <button type="submit">Save token</button>
         <div data-role="status"></div>
+        <button type="button" class="secondary" data-action="remove-token" hidden>
+          Remove API token
+        </button>
       </form>
     </main>
     <script type="module" src="options.js"></script>

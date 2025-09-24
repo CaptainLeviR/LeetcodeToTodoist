@@ -6,12 +6,13 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('todoist-token-form') as HTMLFormElement | null;
   const tokenInput = document.getElementById('todoist-token') as HTMLInputElement | null;
   const statusEl = document.querySelector('[data-role="status"]') as HTMLDivElement | null;
+  const removeButton = document.querySelector('[data-action="remove-token"]') as HTMLButtonElement | null;
 
   if (!form || !tokenInput) {
     return;
   }
 
-  loadExistingToken(tokenInput, statusEl);
+  loadExistingToken(tokenInput, statusEl, removeButton);
 
   form.addEventListener('submit', (event) => {
     event.preventDefault();
@@ -28,11 +29,28 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
       renderStatus(statusEl, 'Saved! You can now add problems to Todoist.', 'success');
+      removeButton?.removeAttribute('hidden');
+    });
+  });
+
+  removeButton?.addEventListener('click', () => {
+    chrome.storage.sync.remove('todoistApiToken', () => {
+      if (chrome.runtime.lastError) {
+        renderStatus(statusEl, chrome.runtime.lastError.message ?? 'Unable to remove token.', 'error');
+        return;
+      }
+      tokenInput.value = '';
+      renderStatus(statusEl, 'Token removed from this browser.', 'info');
+      removeButton.setAttribute('hidden', 'true');
     });
   });
 });
 
-function loadExistingToken(input: HTMLInputElement, statusEl: HTMLDivElement | null) {
+function loadExistingToken(
+  input: HTMLInputElement,
+  statusEl: HTMLDivElement | null,
+  removeButton: HTMLButtonElement | null
+) {
   chrome.storage.sync.get('todoistApiToken', (items) => {
     if (chrome.runtime.lastError) {
       renderStatus(statusEl, chrome.runtime.lastError.message ?? 'Unable to load token.', 'error');
@@ -42,6 +60,9 @@ function loadExistingToken(input: HTMLInputElement, statusEl: HTMLDivElement | n
     if (items.todoistApiToken) {
       input.value = items.todoistApiToken;
       renderStatus(statusEl, 'Your Todoist token is stored securely in the browser.', 'info');
+      removeButton?.removeAttribute('hidden');
+    } else {
+      removeButton?.setAttribute('hidden', 'true');
     }
   });
 }
