@@ -29,6 +29,7 @@ const customDateWrapper = document.querySelector('[data-role="custom-date"]') as
 const customDateInput = document.getElementById('custom-date') as HTMLInputElement | null;
 const statusEl = document.querySelector('[data-role="status"]') as HTMLDivElement | null;
 const configureButtons = document.querySelectorAll<HTMLButtonElement>('[data-action="configure"]');
+const tokenButton = document.querySelector('[data-role="token-button"]') as HTMLButtonElement | null;
 const calendarEl = document.querySelector('[data-role="calendar"]') as HTMLDivElement | null;
 const calendarMonthLabel = calendarEl?.querySelector('[data-role="calendar-month"]') as HTMLSpanElement | null;
 const calendarGrid = calendarEl?.querySelector('[data-role="calendar-grid"]') as HTMLDivElement | null;
@@ -52,6 +53,8 @@ function initialize() {
       chrome.runtime.openOptionsPage();
     });
   });
+
+  updateTokenButtonLabel();
 
   dueSelect?.addEventListener('change', () => {
     if (!customDateWrapper) {
@@ -233,6 +236,16 @@ function setFormBusy(isBusy: boolean) {
   }
   dueSelect && (dueSelect.disabled = isBusy);
   customDateInput && (customDateInput.disabled = isBusy);
+}
+
+function updateTokenButtonLabel() {
+  if (!tokenButton) {
+    return;
+  }
+  chrome.storage.sync.get('todoistApiToken', (items) => {
+    const hasToken = Boolean(items?.todoistApiToken);
+    tokenButton.textContent = hasToken ? 'Edit API token' : 'Add Todoist API token';
+  });
 }
 
 function openCalendar() {
