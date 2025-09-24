@@ -1,6 +1,6 @@
 {
   "name": "leetcodetotodoist",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Chrome extension to schedule LeetCode problems into Todoist.",
   "private": true,
   "scripts": {

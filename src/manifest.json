@@ -2,7 +2,7 @@
   "manifest_version": 3,
   "name": "LeetCode to Todoist",
   "description": "Schedule LeetCode problems into Todoist directly from the problem page.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "action": {
     "default_title": "LeetCode to Todoist",
     "default_popup": "popup.html",
