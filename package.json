@@ -1,0 +1,18 @@
+{
+  "name": "leetcodetotodoist",
+  "version": "0.1.0",
+  "description": "Chrome extension to schedule LeetCode problems into Todoist.",
+  "private": true,
+  "scripts": {
+    "clean": "rm -rf dist",
+    "build": "npm run clean && tsc && node scripts/copy-static.js",
+    "watch": "tsc --watch"
+  },
+  "keywords": ["chrome-extension", "leetcode", "todoist"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chrome": "^0.0.273",
+    "typescript": "^5.4.0"
+  }
+}
