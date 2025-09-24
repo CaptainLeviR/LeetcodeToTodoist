@@ -19,15 +19,22 @@
     "128": "icons/icon-128.png",
     "256": "icons/icon-256.png"
   },
-  "permissions": ["storage", "tabs"],
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
   "host_permissions": [
     "https://leetcode.com/*",
     "https://api.todoist.com/*"
   ],
   "content_scripts": [
     {
-      "matches": ["https://leetcode.com/*"],
-      "js": ["contentScript.js"],
+      "matches": [
+        "https://leetcode.com/*"
+      ],
+      "js": [
+        "contentScript.js"
+      ],
       "run_at": "document_idle"
     }
   ],

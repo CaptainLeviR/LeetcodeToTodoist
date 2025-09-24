@@ -6,9 +6,14 @@
   "scripts": {
     "clean": "rm -rf dist",
     "build": "npm run clean && tsc && node scripts/copy-static.js",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "release": "node scripts/prepare-release.js"
   },
-  "keywords": ["chrome-extension", "leetcode", "todoist"],
+  "keywords": [
+    "chrome-extension",
+    "leetcode",
+    "todoist"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {

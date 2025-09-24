@@ -28,6 +28,7 @@ The compiled extension lives in the `dist/` folder. Load it in Chrome via **chro
 
 - `npm run watch` keeps TypeScript files compiling as you work.
 - `npm run clean` removes the generated `dist/` folder.
+- `npm run release` bumps the extension version (patch by default), rebuilds, and outputs `release/leetcode-to-todoist-vX.Y.Z.zip` ready for the Chrome Web Store. Use `npm run release -- minor` or `-- major` to bump different segments.
 
 ## Features
 
