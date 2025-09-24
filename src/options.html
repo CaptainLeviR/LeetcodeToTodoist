@@ -7,8 +7,39 @@
       :root {
         color-scheme: light dark;
         font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-        background: #f5f5f5;
-        color: #1a1a1a;
+        --background: #f5f5f5;
+        --text-primary: #1a1a1a;
+        --text-secondary: #4a4a4a;
+        --card-background: #ffffff;
+        --card-shadow: 0 18px 36px rgba(0, 0, 0, 0.1);
+        --link-color: #2962ff;
+        --input-background: #ffffff;
+        --input-border: #d0d0d0;
+        --input-text: #1a1a1a;
+        --input-placeholder: #888888;
+        --button-primary-bg: #e44232;
+        --button-primary-text: #ffffff;
+        --status-success: #12805a;
+        --status-error: #c94432;
+        --status-info: #2962ff;
+      }
+
+      :root[data-theme='dark'] {
+        --background: #111111;
+        --text-primary: #f5f5f5;
+        --text-secondary: #c0c0c0;
+        --card-background: #1e1e1e;
+        --card-shadow: 0 18px 36px rgba(0, 0, 0, 0.45);
+        --link-color: #82aaff;
+        --input-background: #2a2a2a;
+        --input-border: #3a3a3a;
+        --input-text: #f5f5f5;
+        --input-placeholder: #9a9a9a;
+        --button-primary-bg: #e44232;
+        --button-primary-text: #ffffff;
+        --status-success: #4dd0a6;
+        --status-error: #ff8a80;
+        --status-info: #82aaff;
       }
 
       body {
@@ -16,19 +47,29 @@
         padding: 32px;
         display: flex;
         justify-content: center;
+        background: var(--background);
+        color: var(--text-primary);
       }
 
       main {
-        background: #ffffff;
+        background: var(--card-background);
         border-radius: 16px;
         padding: 32px;
         width: min(480px, 100%);
-        box-shadow: 0 18px 36px rgba(0, 0, 0, 0.1);
+        box-shadow: var(--card-shadow);
       }
 
       h1 {
         margin-top: 0;
         font-size: 24px;
+      }
+
+      a,
+      button,
+      input,
+      label,
+      p {
+        color: inherit;
       }
 
       form {
@@ -46,13 +87,19 @@
         width: 100%;
         padding: 12px 14px;
         border-radius: 10px;
-        border: 1px solid #d0d0d0;
+        border: 1px solid var(--input-border);
         font-size: 15px;
+        background: var(--input-background);
+        color: var(--input-text);
+      }
+
+      input::placeholder {
+        color: var(--input-placeholder);
       }
 
       button[type="submit"] {
-        background: #e44232;
-        color: #fff;
+        background: var(--button-primary-bg);
+        color: var(--button-primary-text);
         border: none;
         padding: 12px 18px;
         border-radius: 10px;
@@ -64,24 +111,25 @@
       [data-role="status"] {
         min-height: 20px;
         font-size: 14px;
+        color: var(--text-secondary);
       }
 
       [data-role="status"][data-tone="success"] {
-        color: #12805a;
+        color: var(--status-success);
       }
 
       [data-role="status"][data-tone="error"] {
-        color: #c94432;
+        color: var(--status-error);
       }
 
       [data-role="status"][data-tone="info"] {
-        color: #2962ff;
+        color: var(--status-info);
       }
 
       p.help {
         font-size: 14px;
         line-height: 1.5;
-        color: #4a4a4a;
+        color: var(--text-secondary);
         margin: 0;
       }
     </style>

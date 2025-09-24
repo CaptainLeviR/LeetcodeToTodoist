@@ -1,3 +1,7 @@
+import { applyTheme, watchSystemTheme } from './theme.js';
+
+watchSystemTheme(applyTheme);
+
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.getElementById('todoist-token-form') as HTMLFormElement | null;
   const tokenInput = document.getElementById('todoist-token') as HTMLInputElement | null;

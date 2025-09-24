@@ -4,6 +4,7 @@ import type {
   DueSelection,
   GetProblemDataResponse,
 } from './types.js';
+import { applyTheme, watchSystemTheme } from './theme.js';
 
 interface ProblemData {
   title: string;
@@ -35,6 +36,7 @@ const calendarToggle = document.querySelector('[data-action="toggle-calendar"]')
 const prevMonthBtn = calendarEl?.querySelector('[data-action="prev-month"]') as HTMLButtonElement | null;
 const nextMonthBtn = calendarEl?.querySelector('[data-action="next-month"]') as HTMLButtonElement | null;
 
+watchSystemTheme(applyTheme);
 initialize();
 
 let calendarVisible = false;

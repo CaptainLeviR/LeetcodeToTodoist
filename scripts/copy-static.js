@@ -4,6 +4,7 @@ const path = require('path');
 const distDir = path.resolve(__dirname, '..', 'dist');
 const srcDir = path.resolve(__dirname, '..', 'src');
 const staticFiles = ['manifest.json', 'options.html', 'popup.html'];
+const staticDirs = ['icons'];
 
 if (!fs.existsSync(distDir)) {
   fs.mkdirSync(distDir, { recursive: true });
@@ -19,4 +20,17 @@ for (const fileName of staticFiles) {
   }
 
   fs.copyFileSync(sourcePath, targetPath);
+}
+
+for (const dirName of staticDirs) {
+  const sourcePath = path.join(srcDir, dirName);
+  const targetPath = path.join(distDir, dirName);
+
+  if (!fs.existsSync(sourcePath)) {
+    console.warn(`Skipping missing static directory: ${dirName}`);
+    continue;
+  }
+
+  fs.rmSync(targetPath, { recursive: true, force: true });
+  fs.cpSync(sourcePath, targetPath, { recursive: true });
 }
